@@ -16,5 +16,20 @@ catkin build
 source devel/setup.bash
 roslaunch mpc_planner_jackalsimulator ros1_jackalsimulator.launch
 ```
+## Contributing
 
+Contributions are welcome. Please submit a pull request.
+
+## Cite
+
+If you find this code useful, please cite:
+```bash
+@ARTICLE{dra-mppi,
+  author={Trevisan, Elia, and Mustafa, Khaled, and Notten, Godert, and Wang, Xinwei, and Alonso-Mora, Javier},
+  conference={IEEE Robotics and Automation Letters}, 
+  title={Dynamic Risk-Aware MPPI for Mobile Robots in Crowds via Efficient Monte Carlo Approximations}, 
+  year={2025},
+  pages={313-320},
+  doi={10.1109/IROS60139.2025.11246822}}
+```
 
