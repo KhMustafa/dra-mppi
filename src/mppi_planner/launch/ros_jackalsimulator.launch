@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Launch the Jackal controller node --> 
+    <node pkg="mppi_planner" type="ros_jackalsimulator.py" name="jackal_planner" output="screen"/>
+        
+</launch>

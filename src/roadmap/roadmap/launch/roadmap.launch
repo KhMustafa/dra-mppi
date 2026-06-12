@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="map_file_name" default="maps/mobile_robotics_lab/diagonal.xml" />
+    <arg name="config_file" default="$(find roadmap)/config/settings.yaml" />
+
+    <rosparam command="load" file="$(arg config_file)"/>
+    
+    <param name="roadmap/map_file_name" value="$(arg map_file_name)"/>    
+
+    <node pkg="roadmap" type="roadmap_node" name="roadmap_node" respawn="false" output="screen"/>
+</launch>  

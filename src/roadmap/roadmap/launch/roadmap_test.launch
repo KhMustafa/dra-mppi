@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="map" default="" />
+    <arg name="overwrite_map" default="false" />
+    <include file="$(find roadmap)/launch/roadmap.launch">
+        <arg name="map" value="$(arg map)"/>
+        <arg name="overwrite_map" value="$(arg overwrite_map)"/>
+    </include>
+    <node pkg="rviz" type="rviz" name="rviz" required="True" args="-d $(find roadmap)/rviz/rviz_config.rviz" output="log"/>
+
+</launch>  

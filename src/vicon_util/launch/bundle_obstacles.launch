@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="run_ekfs" default="true"/> <!-- Run EKFs for each object -->
+  <arg name="visualize_scene" default="true"/> <!-- Visualize the bundled obstacles -->
+
+  <arg name="robot_topic" default="drone1"/> <!-- The name of the robot in Vicon (this topic will use base_link for the tf) -->
+
+  <!-- Dynamic objects are assumed to be discs [interpretted as <name>/odometry/filtered] -->
+  <arg name="dynamic_object_topics" default="[drone1]"/> <!-- List of dynamic object topics -->
+  <arg name="dynamic_object_radius" default="0.4"/> <!-- Radius of dynamic objects [m] -->
+
+  <!-- Static objects are assumed to be box shaped [interpretted as vicon/<name>] -->
+  <arg name="static_object_topics" default="[rectangle2x1_0, rectangle2x1_1]"/> <!-- List of static object topics -->
+  <arg name="static_object_radius" default="0.3"/> <!-- How wide is each box [m] -->
+  <arg name="static_object_sizes" default="[2, 2]"/> <!-- [widest dimension in multiples of the radius (e.g., 2 = 2 boxes)] -->
+
+  <include if="$(arg run_ekfs)" file="$(find vicon_util)/launch/launch_ekfs.launch" pass_all_args="true"/>
+
+  <node pkg="vicon_util" type="obstacle_bundle_node" name="obstacle_bundle_node" respawn="false" output="screen">
+    <param name="dynamic_objects/radius" value="$(arg dynamic_object_radius)"/>
+    <param name="static_objects/radius" value="$(arg static_object_radius)"/>
+    <rosparam param="static_objects/sizes" subst_value="True">$(arg static_object_sizes)</rosparam>
+    <rosparam param="dynamic_objects/topics" subst_value="True">$(arg dynamic_object_topics)</rosparam>
+    <rosparam param="static_objects/topics" subst_value="True">$(arg static_object_topics)</rosparam>
+  </node>
+
+  <node if="$(arg visualize_scene)" pkg="vicon_util" type="visualize_scene" name="visualize_scene" output="screen"/>
+
+
+</launch>  

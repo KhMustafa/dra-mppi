@@ -1,0 +1,16 @@
+<launch>
+
+    <arg name="input_topic"/>
+    <arg name="output_topic"/>
+    <arg name="publish_tf"/>
+
+    <!-- Augment the pose readings with velocity estimates via an EKF -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_$(arg input_topic)" output="log" clear_params="true">
+        <rosparam command="load" file="$(find vicon_util)/config/ekf.yaml"/>
+        <remap from="pose" to="/vicon/$(arg input_topic)" />
+        <remap from="/odometry/filtered" to="/$(arg output_topic)/odometry/filtered"/>
+        <param name="publish_tf" value="$(arg publish_tf)"/>
+        <param unless="$(arg publish_tf)" name="base_link_frame" value="/vicon/$(arg input_topic)/$(arg input_topic)"/>
+    </node>
+
+</launch>

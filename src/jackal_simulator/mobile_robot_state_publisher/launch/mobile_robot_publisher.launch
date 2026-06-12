@@ -1,0 +1,12 @@
+<launch>
+    <arg name="config" default="$(find mobile_robot_state_publisher)"/>
+
+    <!--Publish the mobile robot pose -->
+    <node name="mobile_robot_state_publisher" pkg="mobile_robot_state_publisher" type="mobile_robot_state_publisher_node" respawn="false" output="screen">
+            <rosparam command="load" file="$(arg config)/config/jackal.yaml" />
+    </node>
+
+    <!-- This is done because we disable the ukf in jackal control to make the positon on gazebo match ros -->
+    <node pkg="tf" type="static_transform_publisher" name="static_map" args="0 0 0 0 0 0 odom map 100" output="log"/>
+
+</launch>

@@ -1,0 +1,12 @@
+type: robot
+name: jackal
+fixed: false
+flip_visual: false
+gravity: true
+differential_drive: true
+mass: 16.523
+wheel_radius: 0.098
+wheel_base: 0.262
+wheel_count: 4
+friction: 0.8
+collision: True

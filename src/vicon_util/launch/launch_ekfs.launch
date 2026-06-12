@@ -1,0 +1,11 @@
+<launch>
+    <!-- The name of your object type in Vicon -->
+    <arg name="dynamic_object_topics" default="[drone1]"/> <!-- List of dynamic object topics, interpretted as <name>/odometry/filtered-->
+    <arg name="robot_topic" default="drone1"/> <!-- The name of the robot in Vicon -->
+
+    <node pkg="vicon_util" type="launch_ekfs.py" name="launch_ekfs" output="log" clear_params="true">
+        <rosparam param="input_topics" subst_value="True">$(arg dynamic_object_topics)</rosparam>
+        <param name="robot_topic" value="$(arg robot_topic)"/>
+    </node>
+
+</launch>

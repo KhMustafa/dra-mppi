@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<arg name="topics" default="[drone1, rectangle2x1_0, rectangle2x1_1]"/>
+<arg name="message_types" default="[geometry_msgs/PoseWithCovarianceStamped, geometry_msgs/PoseStamped, geometry_msgs/PoseStamped]"/>
+
+<node pkg="vicon_util" type="spoof_vicon_node" name="spoof_vicon_node" output="screen" >
+  <rosparam param="topics" subst_value="True">$(arg topics)</rosparam>
+  <rosparam param="message_types" subst_value="True">$(arg message_types)</rosparam>
+</node>
+    
+</launch>

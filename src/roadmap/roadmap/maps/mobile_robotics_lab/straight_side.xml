@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 1.5708 = pi / 2 -->
+<!-- 
+uint8 LANECENTER_FREEWAY=1
+uint8 LANECENTER_SURFACESTREET=2
+uint8 LANECENTER_BIKELANE=3
+uint8 ROADLINE_BROKENSINGLEWHITE=6
+uint8 ROADLINE_SOLIDSINGLEWHITE=7
+uint8 ROADLINE_SOLIDDOUBLEWHITE=8
+uint8 ROADLINE_BROKENSINGLEYELLOW=9
+uint8 ROADLINE_BROKENDOUBLEYELLOW=10
+uint8 ROADLINE_SOLIDSINGLEYELLOW=11
+uint8 ROADLINE_SOLIDDOUBLEYELLOW=12
+uint8 ROADLINE_PASSINGDOUBLEYELLOW=13
+uint8 ROADEDGEBOUNDARY=15
+uint8 ROADEDGEMEDIAN=16
+uint8 STOPSIGN=17
+uint8 CROSSWALK=18
+uint8 SPEEDBUMP=19 
+-->
+<way>
+  <nd x="-20" y="-2" theta="0"/>
+  <nd x="-15" y="-2" theta="0"/>
+  <nd x="-10" y="-2" theta="0"/>
+  <!-- <nd x="-7" y="0" theta="0"/> -->
+  <nd x="-5" y="-2" theta="0"/>
+  <nd x="0" y="-2" theta="0"/>
+  <nd x="5" y="-2" theta="0"/>
+  <nd x="10" y="-2" theta="0"/>
+  <nd x="15" y="-2" theta="0"/>
+  <nd x="20" y="-2" theta="0"/>
+  <lane type="road" width="6." two_way="0"/>
+</way>

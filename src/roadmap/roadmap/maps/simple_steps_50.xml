@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 1.5708 = pi / 2 -->
+<!-- 
+uint8 LANECENTER_FREEWAY=1
+uint8 LANECENTER_SURFACESTREET=2
+uint8 LANECENTER_BIKELANE=3
+uint8 ROADLINE_BROKENSINGLEWHITE=6
+uint8 ROADLINE_SOLIDSINGLEWHITE=7
+uint8 ROADLINE_SOLIDDOUBLEWHITE=8
+uint8 ROADLINE_BROKENSINGLEYELLOW=9
+uint8 ROADLINE_BROKENDOUBLEYELLOW=10
+uint8 ROADLINE_SOLIDSINGLEYELLOW=11
+uint8 ROADLINE_SOLIDDOUBLEYELLOW=12
+uint8 ROADLINE_PASSINGDOUBLEYELLOW=13
+uint8 ROADEDGEBOUNDARY=15
+uint8 ROADEDGEMEDIAN=16
+uint8 STOPSIGN=17
+uint8 CROSSWALK=18
+uint8 SPEEDBUMP=19 
+-->
+<way>
+  <nd x="0" y="0" theta="0.0"/>
+  <nd x="20" y="0" theta="0.0"/>
+  <nd x="40" y="0" theta="0.0"/>
+  <nd x="60" y="50" theta="0.0"/>
+  <nd x="80" y="50" theta="0.0"/>
+  <nd x="100" y="0" theta="0.0"/>
+  <nd x="120" y="0" theta="0.0"/>
+  <nd x="140" y="0" theta="0.0"/>
+  <nd x="160" y="-50" theta="0.0"/>
+  <nd x="180" y="-50" theta="0.0"/>
+  <nd x="200" y="0" theta="0.0"/>
+  <nd x="220" y="0" theta="0.0"/>
+  <nd x="240" y="0" theta="0.0"/>
+  <nd x="260" y="50" theta="0.0"/>
+  <nd x="280" y="50" theta="0.0"/>
+  <nd x="300" y="0" theta="0.0"/>
+  <nd x="320" y="0" theta="0.0"/>
+  <nd x="340" y="0" theta="0.0"/>
+  <nd x="360" y="-50" theta="0.0"/>
+  <nd x="380" y="-50" theta="0.0"/>
+  <nd x="400" y="0" theta="0.0"/>
+  <nd x="420" y="0" theta="0.0"/>
+  <nd x="440" y="0" theta="0.0"/>
+  <nd x="460" y="50" theta="0.0"/>
+  <nd x="480" y="50" theta="0.0"/>
+  <nd x="500" y="0" theta="0.0"/>
+  <nd x="520" y="0" theta="0.0"/>
+  <nd x="540" y="0" theta="0.0"/>
+  <nd x="560" y="-50" theta="0.0"/>
+  <nd x="580" y="-50" theta="0.0"/>
+  <nd x="600" y="0" theta="0.0"/>
+  <nd x="620" y="0" theta="0.0"/>
+  <nd x="640" y="0" theta="0.0"/>
+  <nd x="660" y="50" theta="0.0"/>
+  <nd x="680" y="50" theta="0.0"/>
+  <nd x="700" y="0" theta="0.0"/>
+  <nd x="720" y="0" theta="0.0"/>
+  <nd x="740" y="0" theta="0.0"/>
+  <nd x="760" y="-50" theta="0.0"/>
+  <nd x="780" y="-50" theta="0.0"/>
+  <nd x="800" y="0" theta="0.0"/>
+  <nd x="820" y="0" theta="0.0"/>
+  <nd x="840" y="0" theta="0.0"/>
+  <nd x="860" y="50" theta="0.0"/>
+  <nd x="880" y="50" theta="0.0"/>
+  <nd x="900" y="0" theta="0.0"/>
+  <nd x="920" y="0" theta="0.0"/>
+  <nd x="940" y="0" theta="0.0"/>
+  <nd x="960" y="-50" theta="0.0"/>
+  <nd x="980" y="-50" theta="0.0"/>
+  <lane type="road" width="4.0" two_way="0"/>
+</way>

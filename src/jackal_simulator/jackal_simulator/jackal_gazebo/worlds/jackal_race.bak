@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<sdf version="1.3">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <model name='person_walking'>
+      <link name='ped_link_1'>
+        <gravity>0</gravity>
+        <collision name='bottom'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+            <torsional>
+              <ode/>
+            </torsional>
+            <ode/>
+          </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>model://person_walking/meshes/walking.dae</uri>
+              </mesh>
+            </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+      </link>
+        <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+          <commandTopic>ped_link_1</commandTopic>
+          <ini_x>3</ini_x>
+          <ini_y>-3</ini_y>
+          <odometryTopic>odom</odometryTopic>
+          <odometryFrame>odom</odometryFrame>
+          <odometryRate>10.0</odometryRate>
+          <robotBaseFrame>ped_link_1</robotBaseFrame>
+        </plugin>
+    </model>
+<!--    <model name="tree2">
+      <static>true</static>
+      <link name="tree2_link">
+          <pose>3 0 0.7 0 0 0.3</pose>
+          <collision name="tree2_collision">
+              <geometry>
+                  <mesh>
+                    <uri>file://OliveTree1.dae</uri>
+                    <scale>1 1 1</scale>
+                  </mesh>
+              </geometry>
+          </collision>
+          <visual name="tree2_visual">
+              <geometry>
+                <mesh>
+                  <uri>file://OliveTree1.dae</uri>
+                  <scale>1 1 1</scale>
+                </mesh>
+              </geometry>
+              <cast_shadows>false</cast_shadows>
+          </visual>
+      </link>
+    </model>-->
+ </world>
+</sdf>

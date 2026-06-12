@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 1.5708 = pi / 2 -->
+<!-- 
+uint8 LANECENTER_FREEWAY=1
+uint8 LANECENTER_SURFACESTREET=2
+uint8 LANECENTER_BIKELANE=3
+uint8 ROADLINE_BROKENSINGLEWHITE=6
+uint8 ROADLINE_SOLIDSINGLEWHITE=7
+uint8 ROADLINE_SOLIDDOUBLEWHITE=8
+uint8 ROADLINE_BROKENSINGLEYELLOW=9
+uint8 ROADLINE_BROKENDOUBLEYELLOW=10
+uint8 ROADLINE_SOLIDSINGLEYELLOW=11
+uint8 ROADLINE_SOLIDDOUBLEYELLOW=12
+uint8 ROADLINE_PASSINGDOUBLEYELLOW=13
+uint8 ROADEDGEBOUNDARY=15
+uint8 ROADEDGEMEDIAN=16
+uint8 STOPSIGN=17
+uint8 CROSSWALK=18
+uint8 SPEEDBUMP=19 
+-->
+<way>
+  <nd x="0" y="0" theta="0.0"/>
+  <nd x="5" y="0" theta="0.0"/>
+  <nd x="10" y="0" theta="0.0"/>
+  <nd x="15" y="0" theta="0.0"/>
+  <nd x="20" y="0" theta="0.0"/>
+  <nd x="25" y="20" theta="0.0"/>
+  <nd x="30" y="20" theta="0.0"/>
+  <nd x="35" y="20" theta="0.0"/>
+  <nd x="40" y="0" theta="0.0"/>
+  <nd x="45" y="0" theta="0.0"/>
+  <nd x="50" y="0" theta="0.0"/>
+  <nd x="55" y="0" theta="0.0"/>
+  <nd x="60" y="0" theta="0.0"/>
+  <nd x="65" y="-20" theta="0.0"/>
+  <nd x="70" y="-20" theta="0.0"/>
+  <nd x="75" y="-20" theta="0.0"/>
+  <nd x="80" y="0" theta="0.0"/>
+  <nd x="85" y="0" theta="0.0"/>
+  <nd x="90" y="0" theta="0.0"/>
+  <nd x="95" y="0" theta="0.0"/>
+  <lane type="road" width="4.0" two_way="0"/>
+</way>

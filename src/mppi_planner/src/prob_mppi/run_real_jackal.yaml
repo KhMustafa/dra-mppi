@@ -1,0 +1,52 @@
+start: [0, 0, 0]
+goal: [-3, -2.5]
+device: "cuda:0"
+#device: "cpu"
+steps: 200
+
+mppi: 
+  name: "jackal"
+  mppi_mode: "halton-spline"  # halton-spline, simple
+  sampling_method: "halton"   # halton, random
+  num_samples: 400
+  horizon: 19                 # At least 12 for Halton Sampling
+  lambda_: 0.1
+  dt: 0.2
+  dt_horizon: 0.2
+  horizon_cutoff: 40
+  nx: 6 # number of states
+  nu: 2 # number of inputs
+  u_min: [-0.5, -1.0]
+  u_max: [1.2, 1.0]
+  noise_sigma: [[0.5, 0.], [0., 0.5]]
+  update_cov: False
+  rollout_var_discount: 0.98
+  sample_null_action: True
+  noise_abs_cost: False
+  filter_u: True
+  use_priors: True
+  u_per_command: 0
+
+simulator:
+  render: True
+  steps: 200 
+  urdf: "jackal.urdf"
+  mode: "vel"
+  
+obstacles:
+  num_obstacles: 2
+  cov_growth_factor: 1.0
+  max_velocity: 1
+  init_area: 4
+  init_bias: 1
+  initial_covariance: 0.1
+  propagation_covariance: 0.01
+  crossing_probability: 0.025
+  print_time: False
+  use_gaussian_batch: True  # The faster method to calculate the Monte Carlo integral
+  split_calculation: False  # If true, the Monte Carlo integral is calculated in batches per timestep. This setting changes the behaviour of the algorithm and increases computation time
+  N_monte_carlo: 20000  # Number of samples used to calculate the Monte Carlo integral
+  sample_bound: 5  # Defines the maximuma and minimum value between which samples are taken to calculate the Monte Carlo integral
+  integral_radius: 0.625  # Defines the radius of the area which is integrated
+  hard_cp_constraint: 0.05  # Defines the constraint for the maximum allowed cp
+  soft_cp_constraint: 0.0025  # Defines the constraint for the maximum allowed cp

@@ -1,0 +1,12 @@
+defaults:
+  - mppi: jackal
+  - obstacles: point_robot_obstacles
+
+goal: [25, 0]
+v_ref: 2.0
+render: true
+n_steps: 1000
+nx: 4
+
+actors: ['jackal']
+initial_actor_positions: [[0.0, 0.0, 0.05]]

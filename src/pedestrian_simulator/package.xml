@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pedestrian_simulator</name>
+  <version>0.0.0</version>
+  <description>The pedestrian_simulator package</description>
+  <maintainer email="o.m.degroot@tudelft.nl">Oscar de Groot</maintainer>
+  <license>Apache 2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  
+  <depend>geometry_msgs</depend>
+  <depend>asr_rapidxml</depend>
+  <depend>roslib</depend>
+  <depend>ros_tools</depend>
+  <depend>pedsim_original</depend>
+  <depend>mpc_planner_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>message_filters</depend>
+  <depend>derived_object_msgs</depend>
+
+  <export>
+    <build_type>catkin</build_type>
+  </export>
+</package>
