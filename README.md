@@ -1,5 +1,7 @@
 # DRA-MPPI Planner Workspace (VSCode Docker)
 This repository provides a complete VSCode docker environment for running dynamic risk-aware mppi for mobile robots navigation in crowds in ROS1.
+You can find more information on the [paper's website](https://autonomousrobots.nl/paper_websites/dra-mppi).
+
 
 ### Container
 In VSCode install these extensions:
