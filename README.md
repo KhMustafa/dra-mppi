@@ -28,7 +28,7 @@ If you find this code useful, please cite:
 ```bash
 @ARTICLE{dra-mppi,
   author={Trevisan, Elia, and Mustafa, Khaled, and Notten, Godert, and Wang, Xinwei, and Alonso-Mora, Javier},
-  conference={IEEE Robotics and Automation Letters}, 
+  conference={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
   title={Dynamic Risk-Aware MPPI for Mobile Robots in Crowds via Efficient Monte Carlo Approximations}, 
   year={2025},
   pages={313-320},
