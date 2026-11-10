@@ -46,8 +46,25 @@ RUN python3 -m pip install --upgrade pip && \
     scipy==1.10.1
 
 # Setup ROS environment
-RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
+RUN echo "source /opt/ros/noetic/setup.bash" >> /etc/bash.bashrc
 ENV SHELL /bin/bash
+
+RUN apt-get update && apt-get install -y ros-noetic-derived-object-msgs ros-noetic-robot-localization
+
+# Separate Python 3.11 env for the MPPI planner: newer GPUs (e.g. Blackwell, sm_120)
+# need torch built for CUDA 12.8, which has no Python 3.8 wheels. ROS python libs
+# (rospy, generated msgs) are pure Python and work from this interpreter.
+# The planner launch files pick it up via the MPPI_PYTHON env var.
+ENV UV_PYTHON_INSTALL_DIR=/opt/uv-python
+RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin INSTALLER_NO_MODIFY_PATH=1 sh \
+    && uv venv --python 3.11 /opt/mppi_venv \
+    && uv pip install --python /opt/mppi_venv/bin/python \
+       --index-url https://download.pytorch.org/whl/cu128 torch==2.11.0 \
+    && uv pip install --python /opt/mppi_venv/bin/python \
+       "numpy<2" scipy matplotlib seaborn pandas pyyaml rospkg catkin_pkg netifaces \
+       hydra-core==1.3.2 ghalton==0.6.1 \
+    && chown -R $USERNAME:$USERNAME /opt/mppi_venv
+ENV MPPI_PYTHON=/opt/mppi_venv/bin/python
 
 # Env vars for the nvidia-container-runtime.
 ENV NVIDIA_VISIBLE_DEVICES all

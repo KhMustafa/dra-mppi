@@ -87,7 +87,7 @@ class MPPIConfig(object):
     use_priors: bool = False
     dt: float = 0.1
     dt_horizon: float = 0.2
-    compute_cost_once: bool = True
+    compute_cost_once: bool = False
     horizon_cutoff: int = 30
     nx: int = 6
     nu: int = 5

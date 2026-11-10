@@ -12,7 +12,7 @@ from std_msgs.msg import Empty as EmptyMsg
 from robot_localization.srv import SetPose
 import numpy as np
 from scipy.interpolate import CubicSpline
-from guidance_planner.srv import guidances
+# from guidance_planner.srv import guidances  # package not in workspace; guidance_service() is unused
 import matplotlib.pyplot as plt  # For color mapping
 from sensor_msgs.msg import Joy
 import torch
@@ -90,7 +90,7 @@ class JackalInterface:
         
 
         # Create a service proxy
-        self.guidance_client = rospy.ServiceProxy('/guidance_planner', guidances)
+        # self.guidance_client = rospy.ServiceProxy('/guidance_planner', guidances)
 
         # Set the rate at which to publish commands (in Hz)
         self.rate = rospy.Rate(10)  # 10 Hz

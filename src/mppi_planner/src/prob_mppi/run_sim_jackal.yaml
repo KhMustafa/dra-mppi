@@ -1,7 +1,7 @@
 start: [0, 0, 0]
 goal: [25.0, 0.0]
 device: "cuda:0"
-#device: "cpu"
+# device: "cpu"
 steps: 200
 
 mppi: 

@@ -2,7 +2,7 @@
 <launch>
 
     <!-- Launch the Jackal controller node --> 
-    <node pkg="mppi_planner" type="ros_jackal.py" name="jackal_controller" output="screen"/>
+    <node pkg="mppi_planner" type="ros_jackal.py" name="jackal_controller" output="screen" launch-prefix="$(optenv MPPI_PYTHON /usr/bin/python3)"/>
         
 </launch>
 

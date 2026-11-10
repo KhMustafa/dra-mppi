@@ -2,3 +2,6 @@ devel/
 build/
 logs/
 .catkin_tools/
+
+__pycache__/
+*.py[cod]
