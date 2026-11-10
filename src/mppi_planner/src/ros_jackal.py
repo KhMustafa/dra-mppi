@@ -353,8 +353,8 @@ class Planner:
                     '''
                     positions = torch.stack([torch.tensor(robot_position[0], device='cuda:0'), torch.tensor(robot_position[1], device='cuda:0')])
                     goal_dist = torch.linalg.norm(positions - objective.nav_goal) 
-                    # print("goal_dist is: ", goal_dist) 
-                    # print("goal is: ", objective.nav_goal[0])           
+                    print("goal_dist is: ", goal_dist) 
+                    print("goal is: ", objective.nav_goal[0])           
                     if objective.nav_goal[0] < 0 and (robot_position[0] < -3.0 or robot_position[1] < -2.5):
                         objective.update_goal([4.0, 2.8])
 

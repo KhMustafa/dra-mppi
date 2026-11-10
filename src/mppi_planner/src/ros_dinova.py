@@ -238,7 +238,7 @@ class Planner:
         # print("Angle to goal", angle, goal_angle)
         if torch.abs(angle) < 0.2:
             self.rotating_to_goal = False
-        self.interface.actuate(torch.tensor([0, torch.sign(angle)*1.5, 0.0]))
+        self.interface.actuate(torch.tensor([0, 0, torch.sign(angle)]))
         
           
     def run_dinova_robot(self):
@@ -314,7 +314,9 @@ class Planner:
                     obstacles_new = DynamicObstacles(self.cfg, x, y, headings, cov, vx, vy)
 
                     objective = DinovaObjective(self.cfg, plot=False, dyn_obstacles=obstacles_new, spline=self.interface.spline)
-                    objective.update_goal([4., 2.0])
+                    # objective.update_goal([4., 2.0])
+                    objective.update_goal([0.06, 0.92])
+
 
                     dynamics  = DinovaDynamics(self.cfg)
                     priors = Priors(self.cfg)
@@ -349,24 +351,28 @@ class Planner:
                                     self.interface.odom_msg.velocity[1],
                                     self.interface.odom_msg.velocity[2]]
                     
-                    print("robot x-position is: ", self.interface.odom_msg.position[0])
-                    print("robot y-position is: ", self.interface.odom_msg.position[1])
+                    # print("robot x-position is: ", self.interface.odom_msg.position[0])
+                    # print("robot y-position is: ", self.interface.odom_msg.position[1])
                     
                     positions = torch.stack([torch.tensor(robot_position[0], device='cuda:0'), torch.tensor(robot_position[1], device='cuda:0')])
                     goal_dist = torch.linalg.norm(positions - objective.nav_goal) 
                     print("goal_dist is: ", goal_dist) 
                     print("goal is: ", objective.nav_goal[0])           
                     # if objective.nav_goal[0] < 0 and (robot_position[0] < -3.0 or robot_position[1] < -2.5):
-                    #     objective.update_goal([4.0, 2.8])
+                    if objective.nav_goal[0] < 0 and (goal_dist < 0.1):
+                        # objective.update_goal([4.0, 2.8])
+                        objective.update_goal([0.06, 0.92])
 
-                    #     self.rotating_to_goal = True
+                        self.rotating_to_goal = True
                     # elif objective.nav_goal[0] > 0 and (robot_position[0] > 3.8 or robot_position[1] > 2.6):
-                    #     objective.update_goal([-3, -2.5])
-                    #     self.rotating_to_goal = True
+                    elif objective.nav_goal[0] > 0 and (goal_dist < 0.1):
+                        # objective.update_goal([-3, -2.5])
+                        objective.update_goal([-2.42, -1])
+                        self.rotating_to_goal = True
 
-                    # if self.rotating_to_goal:
-                    #     self.rotate_to_goal(objective.nav_goal, positions, yaw)
-                    # else:
+                    if self.rotating_to_goal:
+                        self.rotate_to_goal(objective.nav_goal, positions, yaw)
+                    else:
                         #print("navigation goal is: ", objective.nav_goal[0])
 
                         # Here need to update states of obstacles. 
@@ -374,53 +380,53 @@ class Planner:
                         # Then also need the predicted states.
                         # Or can use the following code to make predictions based on the current position and velocity of the obstacles
                         #print("reformat obstacle odom")
-                    state_coordinates, ros_predicted_cov, prediction_dict = self.reformat_obstacles_odom(self.interface.obstacle_predictions, exp_mode)
-                    obstacles_new.state_coordinates = state_coordinates
-                    #print("predicted dict x coordinate: ", self.prediction_dict)
+                        state_coordinates, ros_predicted_cov, prediction_dict = self.reformat_obstacles_odom(self.interface.obstacle_predictions, exp_mode)
+                        obstacles_new.state_coordinates = state_coordinates
+                        #print("predicted dict x coordinate: ", self.prediction_dict)
 
-                    obstacles_new.update_multi_mode_predicted_states(prediction_dict)
-                
-
-
-                    state = self.reformat_odom(robot_position, robot_velocity)
-                    action_seq, all_samples, all_samples_cost = planner.command(state)
-
-                    planning_time_stop = time.perf_counter()
-                    
-                    action = action_seq[0]
-
-                    # publish planned trajectory
-                    plan = dynamics.get_trajectory(state, action_seq)
-                    # for action_u in action_seq:
-                    #     print("planned v is: ", action_u[0].item(),  action_u[1].item())
-                    #     print("planned w is: ", action_u[2].item())
-                    '''
-                    for i, point in enumerate(plan):
-                        x, y = point[0].item(), point[1].item()
-                        print("planned x is: ", x)
-                        print("planned y is: ", y)
-                    '''
-
-                    self.interface.publish_planned_trajectory(plan)
-                    self.interface.plot_mppi_rollouts(all_samples, all_samples_cost)
-
-
-                    
-                    step_num += 1
-
-                    # actuate robot and sleep
-                    self.interface.actuate(action)
-
+                        obstacles_new.update_multi_mode_predicted_states(prediction_dict)
                     
 
-                    obstacles_predicted_states = []
-                    for obst_index, obst_data in self.prediction_dict.items():
-                        obstacles_predicted_states.append(obst_data["predicted_coordinates"])
 
-                    obstacles_predicted_states = torch.stack((obstacles_predicted_states), dim=0)
-                    time_step = 0
+                        state = self.reformat_odom(robot_position, robot_velocity)
+                        action_seq, all_samples, all_samples_cost = planner.command(state)
 
-                    theta = robot_position[2]
+                        planning_time_stop = time.perf_counter()
+                        
+                        action = action_seq[0]
+
+                        # publish planned trajectory
+                        plan = dynamics.get_trajectory(state, action_seq)
+                        # for action_u in action_seq:
+                        #     print("planned v is: ", action_u[0].item(),  action_u[1].item())
+                        #     print("planned w is: ", action_u[2].item())
+                        '''
+                        for i, point in enumerate(plan):
+                            x, y = point[0].item(), point[1].item()
+                            print("planned x is: ", x)
+                            print("planned y is: ", y)
+                        '''
+
+                        self.interface.publish_planned_trajectory(plan)
+                        self.interface.plot_mppi_rollouts(all_samples, all_samples_cost)
+
+
+                        
+                        step_num += 1
+
+                        # actuate robot and sleep
+                        self.interface.actuate(action)
+
+                        
+
+                        obstacles_predicted_states = []
+                        for obst_index, obst_data in self.prediction_dict.items():
+                            obstacles_predicted_states.append(obst_data["predicted_coordinates"])
+
+                        obstacles_predicted_states = torch.stack((obstacles_predicted_states), dim=0)
+                        time_step = 0
+
+                        theta = robot_position[2]
                     
                 
 

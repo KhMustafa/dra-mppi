@@ -25,13 +25,13 @@
 
   <!-- Start the vicon bridge -->
   <include file="$(find vicon_bridge)/launch/vicon.launch">
-      <arg name="object_names" value="[$(arg dinova_name), dingo1]"/>
+      <arg name="object_names" value="[$(arg dinova_name), dingo1, dynamic_object2]"/>
       <!-- <arg name="object_names" value="[$(arg dinova_name), dynamic_object1, dynamic_object2, dynamic_object3, dynamic_object5, dingo1, dingo2]"/> -->
-      <arg name="object_msg_types" default="[geometry_msgs/PoseWithCovarianceStamped, geometry_msgs/PoseWithCovarianceStamped]"/>
-      <arg name="object_frame_ids" default="[map, map]"/>
-      <arg name="object_publish_topics" default="[/vicon/$(arg dinova_name), /vicon/dingo1]"/>
+      <arg name="object_msg_types" default="[geometry_msgs/PoseWithCovarianceStamped, geometry_msgs/PoseWithCovarianceStamped, geometry_msgs/PoseWithCovarianceStamped]"/>
+      <arg name="object_frame_ids" default="[map, map, map]"/>
+      <arg name="object_publish_topics" default="[/vicon/$(arg dinova_name), /vicon/dingo1, /vicon/dynamic_object2]"/>
       <!-- <arg name="object_publish_topics" default="[/vicon/$(arg dinova_name), /vicon/dynamic_object1, /vicon/dynamic_object2, /vicon/dynamic_object3, /vicon/dynamic_object5, /vicon/dingo1, /vicon/dingo2]"/> -->
-      <arg name="object_frequency_divider" default="[2, 2]"/>
+      <arg name="object_frequency_divider" default="[2, 2, 2]"/>
   </include>
 
   <!-- Bundle dynamic obstacles in one convenient message -->
@@ -40,7 +40,7 @@
     <arg name="visualize_scene" value="true"/>
     <arg name="robot_topic" value="$(arg dinova_name)"/>
     <!-- 5 Objects -->
-    <arg name="dynamic_object_topics" default="[$(arg dinova_name), dingo1]"/>
+    <arg name="dynamic_object_topics" default="[$(arg dinova_name), dingo1, dynamic_object2]"/>
     <!-- <arg name="dynamic_object_topics" default="[$(arg dinova_name), dynamic_object1, dynamic_object2, dynamic_object3, dingo1, dingo2]"/> -->
     <!-- 2 Objects -->
     <!-- <arg name="dynamic_object_topics" default="[$(arg dinova_name), dynamic_object1, dynamic_object2]"/>  -->
