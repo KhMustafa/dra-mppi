@@ -41,7 +41,7 @@ class DynamicObstacles(object):
         # self.n_obstacles = cfg["obstacles"]["num_obstacles"] = len(x)
         
         # For realworld experiment
-        self.n_obstacles = 2
+        self.n_obstacles = 3
         self.N_rollouts = cfg["mppi"]["num_samples"]
         self.t = cfg["mppi"]["horizon"]
 
